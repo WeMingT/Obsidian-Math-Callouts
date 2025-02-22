@@ -1,0 +1,129 @@
+
+/* ================================ */
+/* 学术Callout系统 v6.1 - 最终生产版 */
+/* ================================ */
+
+/*** 核心架构 ***/
+.callout {
+    --callout-color: 158, 158, 158;
+    --callout-prefix: "📌 Note";
+    
+    margin: 1rem 0;
+    border-radius: 4px;
+    border-left: 3px solid rgba(var(--callout-color), 0.65);
+    background: rgba(var(--callout-color), 0.04);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: scale(1);
+    overflow: hidden;
+}
+
+.callout:hover {
+    transform: scale(1.008) translateX(3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    opacity: 0.98;
+}
+
+.callout-title {
+    padding: 8px 12px;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(var(--callout-color), 0.1);
+    background: rgba(var(--callout-color), 0.03);
+    color: rgba(var(--callout-color), 0.95);
+    font-size: 0.93em;
+}
+
+.callout-content {
+    padding: 12px 15px;
+    line-height: 1.62;
+    font-size: 0.92em;
+    color: var(--text-normal);
+}
+
+/*** 图标系统 ***/
+.callout-icon { display: none !important; }
+.callout-title-inner::before {
+    content: var(--callout-prefix);
+    font-family: "Segoe UI Emoji", "Apple Symbols";
+    margin-right: 10px;
+    filter: saturate(1.1);
+}
+
+/*** 完整环境定义 ***/
+/* 数学理论 */
+.callout[data-callout="theorem"]     { --callout-color: 63, 81, 181;  --callout-prefix: "📜 Theorem"; }
+.callout[data-callout="lemma"]       { --callout-color: 56, 142, 60;  --callout-prefix: "🌿 Lemma"; }
+.callout[data-callout="proposition"] { --callout-color: 81, 45, 168;  --callout-prefix: "📑 Proposition"; }
+
+/* 逻辑体系 */
+.callout[data-callout="axiom"]       { --callout-color: 183, 28, 28;  --callout-prefix: "⭐ Axiom"; }
+.callout[data-callout="postulate"]   { --callout-color: 136, 14, 79;  --callout-prefix: "🌐 Postulate"; }
+
+/* 问题与解答 */
+.callout[data-callout="problem"]     { --callout-color: 229, 57, 53;  --callout-prefix: "❓ Problem"; }
+.callout[data-callout="exercise"]    { --callout-color: 251, 140, 0;  --callout-prefix: "✏️ Exercise"; }
+.callout[data-callout="solution"]    { --callout-color: 67, 160, 71;  --callout-prefix: "✅ Solution"; }
+.callout[data-callout="hint"]        { --callout-color: 255, 193, 7;  --callout-prefix: "💡 Hint"; }
+
+/* 证明结构 */
+.callout[data-callout="proof"]       { --callout-color: 97, 97, 97;   --callout-prefix: "🔍 Proof"; }
+.callout[data-callout="corollary"]   { --callout-color: 123, 31, 162; --callout-prefix: "⇒ Corollary"; }
+.callout[data-callout="conclusion"]  { --callout-color: 0, 105, 112;  --callout-prefix: "🎯 Conclusion"; }
+
+/* 定义类 */
+.callout[data-callout="definition"]  { --callout-color: 158, 158, 158;--callout-prefix: "📖 Definition"; }
+.callout[data-callout="technique"]   { --callout-color: 0, 137, 123;  --callout-prefix: "⚙️ Technique"; }
+
+/* 算法与辨析 */
+.callout[data-callout="algorithm"]   { --callout-color: 0, 150, 136;  --callout-prefix: "⇄ Algorithm"; }
+.callout[data-callout="discrimination"]{--callout-color: 173, 83, 0;  --callout-prefix: "⚖️ Discrimination"; }
+.callout[data-callout="example"]     { --callout-color: 156, 39, 176; --callout-prefix: "📋 Example"; }
+
+/* 新增环境 */
+.callout[data-callout="remark"]      { --callout-color: 179, 100, 53; --callout-prefix: "📌 Remark"; }
+.callout[data-callout="conjecture"]  { --callout-color: 21, 101, 192; --callout-prefix: "🌌 Conjecture"; }
+.callout[data-callout="note"]        { --callout-color: 158, 158, 158;--callout-prefix: "📔 Note"; }
+.callout[data-callout="property"]    { --callout-color: 0, 128, 128;  --callout-prefix: "🏷️ Property"; }
+.callout[data-callout="assumption"]  { --callout-color: 200, 150, 0;  --callout-prefix: "🏛️ Assumption"; }
+.callout[data-callout="observation"] { --callout-color: 60, 140, 60;  --callout-prefix: "🔬 Observation"; }
+.callout[data-callout="paradox"]     { --callout-color: 200, 50, 50;  --callout-prefix: "🌀 Paradox"; }
+.callout[data-callout="methodology"] { --callout-color: 68, 60, 135;  --callout-prefix: "🧮 Methodology"; }
+.callout[data-callout="idea"]        { --callout-color: 76, 175, 80;  --callout-prefix: "✨ Idea"; }
+
+/*** 深色模式配置 ***/
+.theme-dark .callout {
+    background: rgba(var(--callout-color), 0.08) !important;
+    border-left-color: rgba(var(--callout-color), 0.5) !important;
+}
+.theme-dark .callout-title {
+    background: rgba(var(--callout-color), 0.05) !important;
+}
+
+/*** 响应式布局 ***/
+@media (max-width: 768px) {
+    .callout { margin: 0.8rem 0; border-left-width: 2px; }
+    .callout-title { padding: 6px 10px; font-size: 0.9em; }
+    .callout-content { padding: 10px 12px; }
+}
+
+/*** 隐藏ID系统 ***/
+.hidden-id {
+    font-size: 0 !important;
+    opacity: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.internal-link[href*="#^"]::after {
+    content: " → " attr(href);
+    font-family: "Fira Code", monospace;
+    font-size: 0.88em;
+    color: rgba(var(--callout-color), 0.7);
+    margin-left: 0.4em;
+}
+
+@media print {
+    .hidden-id { font-size: 1pt !important; color: #0000 !important; }
+    .callout { break-inside: avoid-page; box-shadow: none !important; }
+}

@@ -1,0 +1,284 @@
+/* ================================ */
+/* 学术Callout系统 v5.0 - 终极版 */
+/* ================================ */
+
+/*** 核心架构 ***/
+.callout {
+    --callout-color: 100, 100, 100; /* 默认颜色 */
+    --callout-prefix: "📌 Note";
+    
+    border-radius: 3px;
+    margin: 1.5rem 0;
+    border: 1px solid rgba(var(--callout-color), 0.15);
+    border-left-width: 4px;
+    background: rgba(var(--callout-color), 0.06);
+    overflow: hidden;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.callout:hover {
+    transform: translateX(2px);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+.callout-title {
+    padding: 10px 15px;
+    font-family: "Latin Modern Roman", Georgia, serif;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid rgba(var(--callout-color), 0.1);
+    background: rgba(var(--callout-color), 0.04);
+    color: rgb(var(--callout-color));
+}
+
+.callout-content {
+    padding: 15px;
+    line-height: 1.7;
+    color: var(--text-normal);
+}
+
+/*** 图标系统 ***/
+.callout-icon { display: none !important; } /* 禁用默认图标 */
+
+.callout-title-inner::before {
+    content: var(--callout-prefix);
+    font-family: "Apple Symbols", "Segoe UI Emoji";
+    margin-right: 10px;
+    font-weight: 500;
+    filter: saturate(1.2);
+}
+
+/*** 环境类型定义 ***/
+/* 数学基础 */
+.callout[data-callout="theorem"] {
+    --callout-color: 2, 117, 216; /* 牛津蓝 */
+    --callout-prefix: "📜 Theorem";
+}
+
+.callout[data-callout="lemma"] {
+    --callout-color: 40, 167, 69; /* 森林绿 */
+    --callout-prefix: "🌿 Lemma";
+}
+
+.callout[data-callout="proposition"] {
+    --callout-color: 111, 66, 193; /* 皇家紫 */
+    --callout-prefix: "📑 Proposition";
+}
+
+/* 公理体系 */
+.callout[data-callout="axiom"] {
+    --callout-color: 200, 80, 0; /* 赤陶色 */
+    --callout-prefix: "⭐ Axiom";
+}
+
+.callout[data-callout="postulate"] {
+    --callout-color: 180, 40, 40; /* 深红色 */
+    --callout-prefix: "🌐 Postulate";
+}
+
+/* 问题解决 */
+.callout[data-callout="problem"] {
+    --callout-color: 220, 53, 69; /* 警示红 */
+    --callout-prefix: "❓ Problem";
+}
+
+.callout[data-callout="exercise"] {
+    --callout-color: 255, 132, 0; /* 琥珀橙 */
+    --callout-prefix: "✏️ Exercise";
+}
+
+.callout[data-callout="solution"] {
+    --callout-color: 0, 150, 100; /* 翡翠绿 */
+    --callout-prefix: "✅ Solution";
+}
+
+.callout[data-callout="hint"] {
+    --callout-color: 255, 193, 7; /* 黄金色 */
+    --callout-prefix: "💡 Hint";
+}
+
+/* 逻辑结构 */
+.callout[data-callout="proof"] {
+    --callout-color: 50, 50, 50; /* 石墨灰 */
+    --callout-prefix: "🔍 Proof";
+}
+
+.callout[data-callout="corollary"] {
+    --callout-color: 150, 80, 180; /* 紫水晶 */
+    --callout-prefix: "⇒ Corollary";
+}
+
+.callout[data-callout="conclusion"] {
+    --callout-color: 40, 100, 120; /* 深海蓝 */
+    --callout-prefix: "🎯 Conclusion";
+}
+
+/* 定义描述 */
+.callout[data-callout="definition"] {
+    --callout-color: 100, 100, 100; /* 中灰色 */
+    --callout-prefix: "📖 Definition";
+}
+
+.callout[data-callout="technique"] {
+    --callout-color: 0, 120, 140; /* 孔雀蓝 */
+    --callout-prefix: "⚙️ Technique";
+}
+
+/* 算法与辨析 */
+.callout[data-callout="algorithm"] {
+    --callout-color: 0, 160, 160; /* 蓝绿色 */
+    --callout-prefix: "⇄ Algorithm";
+}
+
+.callout[data-callout="discrimination"] {
+    --callout-color: 180, 100, 0; /* 赭色 */
+    --callout-prefix: "⚖️ Discrimination";
+}
+
+.callout[data-callout="example"] {
+    --callout-color: 150, 0, 150; /* 品红色 */
+    --callout-prefix: "📋 Example";
+}
+
+/* 新增环境类型 */
+.callout[data-callout="remark"] {
+    --callout-color: 180, 100, 180; /* 淡紫色 */
+    --callout-prefix: "📌 Remark";
+}
+
+.callout[data-callout="conjecture"] {
+    --callout-color: 30, 100, 180; /* 星空蓝 */
+    --callout-prefix: "🌌 Conjecture";
+}
+
+.callout[data-callout="note"] {
+    --callout-color: 100, 100, 150; /* 石板灰 */
+    --callout-prefix: "📔 Note";
+}
+
+.callout[data-callout="property"] {
+    --callout-color: 0, 128, 128; /* 深青色 */
+    --callout-prefix: "🏷️ Property";
+}
+
+.callout[data-callout="assumption"] {
+    --callout-color: 200, 150, 0; /* 黄褐色 */
+    --callout-prefix: "🏛️ Assumption";
+}
+
+.callout[data-callout="observation"] {
+    --callout-color: 60, 140, 60; /* 橄榄绿 */
+    --callout-prefix: "🔬 Observation";
+}
+
+.callout[data-callout="paradox"] {
+    --callout-color: 200, 50, 50; /* 猩红色 */
+    --callout-prefix: "🌀 Paradox";
+}
+
+.callout[data-callout="methodology"] {
+    --callout-color: 80, 80, 160; /* 靛蓝色 */
+    --callout-prefix: "🧮 Methodology";
+}
+
+/*** 深色模式优化 ***/
+.theme-dark .callout {
+    background: rgba(var(--callout-color), 0.12);
+    border-color: rgba(var(--callout-color), 0.25);
+}
+
+.theme-dark .callout-title {
+    border-bottom-color: rgba(var(--callout-color), 0.15);
+}
+
+/*** 智能标题系统 ***/
+.callout-title-inner:empty::after {
+    content: attr(data-callout);
+    text-transform: capitalize;
+    font-weight: 600;
+    color: rgba(var(--callout-color), 0.9);
+}
+
+/*** 响应式布局 ***/
+@media (max-width: 768px) {
+    .callout {
+        margin: 1.2rem 0;
+        border-left-width: 3px;
+    }
+    .callout-title {
+        padding: 8px 12px;
+        font-size: 0.95em;
+    }
+    .callout-title-inner::before {
+        margin-right: 8px;
+    }
+}
+
+/****** 隐藏ID系统 ******/
+.hidden-id {
+    font-size: 0 !important;
+    opacity: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+/* 块引用悬浮提示 */
+.internal-link[href*="#^"]::after {
+    content: " → " attr(href);
+    font-family: "Fira Code", monospace;
+    font-size: 0.9em;
+    color: rgba(var(--callout-color), 0.7);
+    margin-left: 0.5em;
+    vertical-align: baseline;
+}
+
+/* 保持Callout标题对齐 */
+.callout-title .hidden-id {
+    display: inline-block;
+    width: 0;
+    overflow: visible;
+}
+
+/* 导出兼容性增强 */
+@media print {
+    .hidden-id {
+        font-size: 1pt !important;
+        color: #0000 !important;
+    }
+    
+    .callout {
+        break-inside: avoid-page;
+        box-shadow: none !important;
+    }
+}
+
+/****** 公式编号系统 ******/
+.equation-id {
+    font-size: 0;
+    opacity: 0.01;
+    line-height: 0;
+    user-select: none;
+}
+
+/* 公式块聚焦效果 */
+.markdown-rendered .math:has(.equation-id) {
+    position: relative;
+    padding-right: 20px;
+}
+
+.markdown-rendered .math:has(.equation-id):hover::after {
+    content: attr(data-id);
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: "Fira Code", monospace;
+    font-size: 0.8em;
+    color: rgba(2, 117, 216, 0.7);
+    background: rgba(255,255,255,0.9);
+    padding: 2px 5px;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
