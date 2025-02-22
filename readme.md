@@ -68,9 +68,22 @@
 - 优化内部链接显示
 
 ## 使用方法
+### 1. 安装步骤
+1. 下载 `math callouts v0.7.css` 文件
+2. 将文件放置在 Obsidian 的 snippets 文件夹中：
+   - Windows: `[你的笔记库]/.obsidian/snippets/`
+   - macOS/Linux: `[你的笔记库]/.obsidian/snippets/`
+3. 在 Obsidian 中启用该样式：
+   - 打开设置（Settings）
+   - 进入外观（Appearance）
+   - 滚动到底部的 CSS 代码片段（CSS Snippets）
+   - 点击刷新按钮
+   - 启用 `math callouts v0.7.css`
+
+### 2. Callout 基本语法
 在 Obsidian 中使用以下语法创建 Callout：
 ```markdown
-> [!类型] 标题
+> [!类型] 标题（可选）
 > 内容
 ```
 例如：
@@ -83,3 +96,7 @@
 1. 确保 CSS 片段在 Obsidian 中已启用
 2. 深色模式下会自动调整显示效果
 3. 移动端查看时会自动优化布局
+
+
+
+
